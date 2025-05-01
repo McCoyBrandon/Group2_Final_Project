@@ -10,7 +10,7 @@ The game is made using Gradio. Install any necessary prerequisite libraries, the
 
 ### The Gameplay
 
-The user uploads a photo and privately chooses an object in the photo. The user then writes a clue to the computer of the form "I spy with my little eye something that is ___." The computer then scans the photo for objects that match the clue and presents a guess to the user. The user can make the computer guess again if the guess was incorrect. If the computer guesses correctly, the computer wins, otherwise the user does.
+The user chooses or uploads a photo and privately chooses an object in the photo. The user then writes a clue to the computer of the form "I spy with my little eye something that is ___." The computer then scans the photo for objects that match the clue and presents a guess to the user. The user can make the computer guess again if the guess was incorrect. If the computer guesses correctly, the computer wins, otherwise the user does.
 
 ### Tools/Models/APIs and Inner Workings
 
