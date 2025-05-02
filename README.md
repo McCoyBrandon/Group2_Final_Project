@@ -6,7 +6,7 @@ This portion of the project is a version of the game I Spy. The user plays again
 
 ### Running the Game
 
-The game is made using Gradio. Install any necessary prerequisite libraries, then run the code to open a Gradio server.
+The game is made using Gradio. Install any necessary prerequisite libraries, then run the code to open a Gradio server. A version uploaded to HuggingFace Spaces can be found at [https://huggingface.co/spaces/leandrumartin/ai-i-spy](https://huggingface.co/spaces/leandrumartin/ai-i-spy).
 
 ### The Gameplay
 
