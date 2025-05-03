@@ -85,7 +85,7 @@ with gr.Blocks() as demo:
 
     with gr.Row():
         image_input = gr.Image(type="pil")
-        clue_input = gr.Textbox(label="Enter your clue", placeholder="I spy with my little eye something that is...")
+        clue_input = gr.Textbox(label="Enter your clue: I spy with my little eye something that is...", placeholder="I spy with my little eye something that is...")
 
     run_button = gr.Button("Start guessing")
     retry_button = gr.Button("Guess again", visible=False)
