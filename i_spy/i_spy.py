@@ -24,7 +24,7 @@ def start_game(image, clue):
     zipped_results = list(zip(results["scores"], results["labels"], results["boxes"]))
 
     if not zipped_results:
-        return "No objects detected with sufficient confidence.", None, guess_state
+        return "No objects detected with sufficient confidence.", None, guess_state, gr.update(visible=True)
 
     # Get embedding for clue
     processed_clue = clip_processor(text=clue, return_tensors="pt", padding=True)
@@ -62,12 +62,9 @@ def start_game(image, clue):
             text_guesses.append(label_text)
             image_guesses.append(cropped_image)
 
-        return f'Is it this {text_guesses[0]}? If not, press "Guess again."', image_guesses[0], guess_state
+        return f'Is it this {text_guesses[0]}? If not, press "Guess again."', image_guesses[0], guess_state, gr.update(visible=True)
     except IndexError:
-        return "I couldn't find anything in the image, so you win!", None, guess_state
-
-def show_retry_button():
-    return gr.update(visible=True)
+        return "I couldn't find anything in the image, so you win!", None, guess_state, gr.update(visible=True)
 
 def guess_again(guess_state):
     guess_number, similarity_calculations, text_guesses, image_guesses = guess_state
@@ -93,8 +90,7 @@ with gr.Blocks() as demo:
     output_text = gr.Markdown()
     output_image = gr.Image(label="Image Guess", interactive=False)
 
-    run_button.click(fn=start_game, inputs=[image_input, clue_input], outputs=[output_text, output_image, guess_state])
-    run_button.click(fn=show_retry_button, outputs=retry_button)
+    run_button.click(fn=start_game, inputs=[image_input, clue_input], outputs=[output_text, output_image, guess_state, retry_button])
 
     retry_button.click(fn=guess_again, inputs=guess_state, outputs=[output_text, output_image])
 
