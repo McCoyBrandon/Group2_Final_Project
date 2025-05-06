@@ -1,0 +1,11 @@
+gradio
+openai
+transformers
+diffusers
+accelerate
+torch
+torchaudio
+soundfile
+scipy
+datasets
+opencv-python
