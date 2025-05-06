@@ -1,10 +1,16 @@
-# Group2_Final_Project
+# Group2_Final_Project: Children Entertainment Assistant
 ---
-# Introduction
+## Introduction
 
+The **Children Entertainment Assistant** is an interactive, AI-powered application designed to engage children through creativity, play, and storytelling. It combines multiple AI tools into a single, easy-to-use Gradio interface featuring:
+
+- 🕵️ **I Spy Game**: An object recognition game powered by computer vision and CLIP embeddings where children provide a clue, and the AI tries to guess what they see in an image.
+- 📖 **Storytelling**: A story generator that creates children's stories from a prompt, then narrates and illustrates them using language, speech, and image models.
+- 🎨 **Coloring Outlines**: A tool that converts uploaded images into savable coloring book-style outlines using edge detection and image processing.
+
+The app is built with Hugging Face Transformers, OpenAI’s ChatGPT and DALL·E APIs, and open-source models — all accessible through a single, friendly interface.
 
 ---
-# How to run the app
 ## Requirements
 
 - Python 3.8 or higher
@@ -26,7 +32,6 @@ You can install all required libraries using:
 pip install -r requirements.txt
 
 ## How to run
-## How to Run
 
 1. Clone or download this repository to your local machine.
 
@@ -63,6 +68,7 @@ pip install -r requirements.txt
     - 🎨 Coloring Outlines
 
 ---
+
 # Details about the app
 
 ## I Spy Game
