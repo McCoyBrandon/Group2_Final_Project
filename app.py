@@ -9,9 +9,6 @@ import torch
 # ---- Story-telling Packages ----
 from openai import OpenAI
 #import gradio as gr
-from transformers import SpeechT5Processor, SpeechT5ForTextToSpeech
-from datasets import load_dataset
-import soundfile as sf
 from diffusers import StableDiffusionPipeline
 import tempfile
 import numpy as np
@@ -102,14 +99,6 @@ def guess_again(guess_state):
 # Setting ChatGPT keys
 client = OpenAI(api_key="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")
 
-# Load processor and model for voice narration
-processor = SpeechT5Processor.from_pretrained("microsoft/speecht5_tts")
-model = SpeechT5ForTextToSpeech.from_pretrained("microsoft/speecht5_tts")
-
-# Load speaker embeddings (use pretrained speaker from dataset)
-embeddings_dataset = load_dataset("Matthijs/cmu-arctic-xvectors", split="validation")
-speaker_embedding = torch.tensor(embeddings_dataset[7306]["xvector"]).unsqueeze(0)
-
 # Load Stable Diffusion model for image generation
 device = "cuda" if torch.cuda.is_available() else "cpu"
 sd_pipe = StableDiffusionPipeline.from_pretrained(
@@ -131,30 +120,7 @@ def generate_story(prompt):
         print("Story error:", e)
         return f"Error generating story: {e}"
 
-# ---- Option 1: Narrate Story ----
-def generate_audio(text):
-    try:
-        # Truncate to SpeechT5's limit
-        text = text[:600]
-
-        # Generate speech
-        inputs = processor(text=text, return_tensors="pt")
-        speech = model.generate_speech(inputs["input_ids"], speaker_embedding)
-
-        # Convert to NumPy array, 1D float32
-        waveform = speech.squeeze().cpu().numpy()
-        waveform = np.clip(waveform, -1.0, 1.0)  # Ensure it's in [-1, 1]
-        waveform = waveform.astype(np.float32)
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
-            sf.write(tmp.name, waveform, 16000, format="WAV", subtype="PCM_16")
-            return tmp.name
-    except Exception as e:
-        print("Audio error:", e)
-        return None
-
-
-# ---- Optiion 2: Illustrate Story ----
+# ---- 2 Optiions for Illustrate Story ----
 def generate_image(story_text):
     try:
         image = sd_pipe(story_text[:200]).images[0]
@@ -234,8 +200,6 @@ with gr.Blocks() as story_interface:
     # Output previews
     story_output = gr.Textbox(label="Generated Story", lines=10)
     story_button = gr.Button("Generate Story")
-    audio_output = gr.Audio(label="Narration", type="filepath", interactive=True)
-    audio_button = gr.Button("Generate Narration")
     image_output = gr.Gallery(label="Illustrations (SD or DALL·E)", columns=2, height="auto")
     image_button_sd = gr.Button("Generate with Stable Diffusion")
     image_button_dalle = gr.Button("Generate with ChatGPT: DALL·E")
@@ -243,7 +207,6 @@ with gr.Blocks() as story_interface:
 
     # Button logic
     story_button.click(generate_story, inputs=story_prompt, outputs=story_output)
-    audio_button.click(generate_audio, inputs=story_output, outputs=audio_output)
     image_button_sd.click(generate_image, inputs=story_output, outputs=image_output)
 
     def display_dalle_images(story_text):
