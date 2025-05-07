@@ -10,6 +10,9 @@ The **Children Entertainment Assistant** is an interactive, AI-powered applicati
 
 The app is built with Hugging Face Transformers, OpenAI’s ChatGPT and DALL·E APIs, and open-source models — all accessible through a single, friendly interface.
 
+A HuggingFace online demo can be found here:
+https://huggingface.co/spaces/mccoybs/Children_Entertainment_Assistant
+
 ---
 ## Requirements
 
