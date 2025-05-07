@@ -5,7 +5,7 @@
 The **Children Entertainment Assistant** is an interactive, AI-powered application designed to engage children through creativity, play, and storytelling. It combines multiple AI tools into a single, easy-to-use Gradio interface featuring:
 
 - 🕵️ **I Spy Game**: An object recognition game powered by computer vision and CLIP embeddings where children provide a clue, and the AI tries to guess what they see in an image.
-- 📖 **Storytelling**: A story generator that creates children's stories from a prompt, then narrates and illustrates them using language, speech, and image models.
+- 📖 **Storytelling**: A story generator that creates children's stories from a prompt, then narrates and illustrates them using language and image models.
 - 🎨 **Coloring Outlines**: A tool that converts uploaded images into savable coloring book-style outlines using edge detection and image processing.
 
 The app is built with Hugging Face Transformers, OpenAI’s ChatGPT and DALL·E APIs, and open-source models — all accessible through a single, friendly interface.
@@ -53,7 +53,7 @@ pip install -r requirements.txt
 5. Open the `app.py` file and insert your OpenAI API key where indicated:
 
     ```python
-    client = OpenAI(api_key="your-api-key-here")
+    client = OpenAI(api_key = "YOUR_API_KEY_HERE")
     ```
 
 6. Launch the app:
@@ -96,12 +96,11 @@ The bounding box coordinates are used to crop the image into new images containi
 This section allows the user to generate a whimsical children's story, narrate it with AI-generated speech, and illustrate it using AI-generated images.
 
 - **Story Generator**: Uses OpenAI's ChatGPT API to generate a children's story based on a prompt.
-- **Narration**: Converts the story into a playable and downloadable narration using Microsoft's `speecht5_tts` model.
 - **Image Generation Options**:
   - **Stable Diffusion**: Creates a single image representing the first 600 characters of the story using the `runwayml/stable-diffusion-v1-5` model.
   - **DALL·E (ChatGPT)**: Generates two images using the first and last lines of the story by calling the OpenAI DALL·E 3 API.
 
-The generated audio and images are presented in the interface and can be downloaded.  Images can be include din the final section as well for coloring.
+The images are presented in the interface and can be downloaded.  Images can be included in the final section as well for coloring section.
 
 ---
 
