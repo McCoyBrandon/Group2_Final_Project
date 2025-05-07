@@ -1,11 +1,10 @@
 gradio
-openai
+torch
 transformers
+opencv-python
+Pillow
+numpy
 diffusers
 accelerate
-torch
-torchaudio
-soundfile
 scipy
-datasets
-opencv-python
+openai
