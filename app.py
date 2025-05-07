@@ -310,7 +310,7 @@ with gr.Blocks() as i_spy_interface:
     preview_image = gr.Image(type="pil", label="Selected Image", interactive=False)
 
     # Clue goes below preview, above the button
-    clue_input = gr.Textbox(label="Give a clue", placeholder="e.g., something red")
+    clue_input = gr.Textbox(label="Give a clue: I spy with my little eye something that is...", placeholder="e.g., red")
 
     # Action buttons
     with gr.Row():
